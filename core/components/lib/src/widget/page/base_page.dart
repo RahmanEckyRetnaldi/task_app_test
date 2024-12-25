@@ -149,8 +149,8 @@ class BasePage<BLOC extends BlocBase<STATE>, STATE extends BasePageState>
     BuildContext context,
     Failure failure,
   ) {
-    var errTitle = errorTitle?.call(failure) ?? 'Error';
-    var errBody = errorBody?.call(failure) ?? 'No Body';
+    var errTitle = errorTitle?.call(failure) ?? 'Something went wrong';
+    var errBody = errorBody?.call(failure) ?? failure.message;
     return showDialog(
       context: context,
       barrierDismissible: true,

@@ -24,13 +24,13 @@ class SplashCubit extends Cubit<SplashState>
     await Future.delayed(const Duration(seconds: 2));
     syncEmit(
       (state) => state.copyWith(
-        getSplashStatus: FormzStatus.submissionSuccess,
+        getSplashStatus: FormzStatus.submissionSuccess
       ),
     );
   }
 
   Future<bool> get haveToken async {
-    return false;
+    return true;
   }
 
   Future<void> redirectPage({bool longDelay = true}) async {
@@ -48,7 +48,6 @@ class SplashCubit extends Cubit<SplashState>
 
   @override
   clearErrorState() {
-    // TODO: implement clearErrorState
-    throw UnimplementedError();
+    syncEmit((state) => state.copyWith(failure: null));
   }
 }

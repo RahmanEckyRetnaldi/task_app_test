@@ -41,13 +41,19 @@ class SplashUI extends StatelessWidget {
             listenWhen: (previous, current) =>
                 previous.getSplashStatus != current.getSplashStatus,
             listener: (context, state) {
-              if (state.getSplashStatus != FormzStatus.submissionInProgress) {
+              if (state.getSplashStatus == FormzStatus.submissionSuccess) {
                 context.read<SplashCubit>().redirectPage();
               }
             },
           ),
         ],
         child: BasePage<SplashCubit,SplashState>(
+          overridesFailureHandling: (failure){
+            return false;
+          },
+          customLoading: const BaseLoadingAnimation(
+            color: AppColors.background,
+          ),
           child: BlocBuilder<SplashCubit, SplashState>(
             buildWhen: (prev, current) => prev.getSplashStatus != current.getSplashStatus,
             builder: (context, state){
