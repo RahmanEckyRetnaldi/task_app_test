@@ -1,0 +1,20 @@
+# melos_managed_dependency_overrides: auth,common_dependency,env,navigation,network,splash,task,nav_list,components
+dependency_overrides:
+  auth:
+    path: ../../feature/auth
+  common_dependency:
+    path: ../common_dependency
+  components:
+    path: ../components
+  env:
+    path: ../../env
+  nav_list:
+    path: ../nav_list
+  navigation:
+    path: ../navigation
+  network:
+    path: ../network
+  splash:
+    path: ../../feature/splash
+  task:
+    path: ../../feature/task

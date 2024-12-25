@@ -1,0 +1,64 @@
+name: flutter_task
+
+sdkPath: .fvm/flutter_sdk
+packages:
+  - feature/**
+  - core/**
+  - app/**
+  - env
+command:
+  bootstrap:
+    usePubspecOverrides: true
+scripts:
+  build_runner:
+    exec:
+      concurrency: 1
+      failFast: true
+    run: dart run build_runner build --delete-conflicting-outputs
+    description: Run a build_runner build in the ODM example app.
+    packageFilters:
+      dependsOn: "build_runner"
+  build_runner:watch:
+    exec:
+      concurrency: 6
+      failFast: true
+    run:  dart run build_runner watch --delete-conflicting-outputs
+    description: Run a build_runner build in the ODM example app.
+    packageFilters:
+      dependsOn: "build_runner"
+  build_runner:all:
+    run: melos run build_runner --no-select
+    description: run build runner for all package listed.
+  pre-pr:
+    exec:
+      concurrency: 6
+      failFast: true
+    run: dart fix --apply && dart format . -o write
+    description: cleaning up code before commiting
+    packageFilters:
+      dependsOn: "flutter"
+  fix:
+    exec:
+      concurrency: 6
+      failFast: true
+    run: dart fix --apply
+    description: run dart fix
+    packageFilters:
+      dependsOn: "flutter"
+  format:
+    exec:
+      concurrency: 6
+      failFast: true
+    run: dart format . -o write
+    description: run dart format
+    packageFilters:
+      dependsOn: "flutter"
+  env:
+    exec:
+      concurrency: 6
+      failFast: true
+    run: flutter pub run build_runner clean && flutter pub run build_runner build --delete-conflicting-outputs
+    description: Run build runner for example main app environment.
+    packageFilters:
+      dependsOn:
+        - "envied_generator"

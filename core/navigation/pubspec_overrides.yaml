@@ -1,0 +1,10 @@
+# melos_managed_dependency_overrides: auth,nav_list,splash,task
+dependency_overrides:
+  auth:
+    path: ../../feature/auth
+  nav_list:
+    path: ../nav_list
+  splash:
+    path: ../../feature/splash
+  task:
+    path: ../../feature/task
