@@ -97,7 +97,7 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
 
   assets:
-    - assets/images/
+    - assets/icon/
 
   fonts:
     - family: Lato
@@ -132,3 +132,9 @@ flutter:
           weight: 500
         - asset: fonts/National2Condensed-Regular.otf
           weight: 400
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/app_icon.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21

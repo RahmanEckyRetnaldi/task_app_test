@@ -14,9 +14,15 @@ class TaskTypography {
     fontWeight: FontWeight.normal,
     color: Colors.black,
   );
+  static const TextStyle bodyText2 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.normal,
+    color: Colors.black,
+  );
 
   static TextTheme textTheme = const TextTheme(
     displayLarge: headline1,
     displayMedium: bodyText1,
+    bodyMedium: bodyText2
   );
 }

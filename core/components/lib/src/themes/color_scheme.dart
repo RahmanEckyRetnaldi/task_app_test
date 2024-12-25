@@ -20,4 +20,9 @@ class AppColors {
   static const Color onBackground = Color(0xFF000000);
   static const Color onSurface = Color(0xFF000000);
   static const Color onError = Color(0xFFFFFFFF);
+
+  //neutral
+  static const Color neutral20 = Color(0xFFEAECF0);
+  static const Color neutral40 = Color(0xFF98A2B3);
+  static const Color neutral50 = Color(0xFF667085);
 }

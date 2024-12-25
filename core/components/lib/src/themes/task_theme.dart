@@ -1,4 +1,4 @@
-import 'package:components/themes/task_typography.dart';
+import 'package:components/src/themes/task_typography.dart';
 import 'package:flutter/material.dart';
 
 import 'color_scheme.dart';
