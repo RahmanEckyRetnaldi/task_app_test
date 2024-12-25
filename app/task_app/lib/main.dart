@@ -11,6 +11,8 @@ void main() async {
   await DependencyInjector().injectApp(
     baseUrl: Env.baseUrl,
   );
+  PackageInfo packageInfo = await PackageInfo.fromPlatform();
+  debugPrint('Package Name: ${packageInfo.packageName}');
   runApp(const MyApp());
 }
 

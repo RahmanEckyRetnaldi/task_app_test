@@ -1,4 +1,4 @@
-# melos_managed_dependency_overrides: env,network,components
+# melos_managed_dependency_overrides: components,env,network
 dependency_overrides:
   components:
     path: ../components

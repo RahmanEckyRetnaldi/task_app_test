@@ -1,4 +1,4 @@
-# melos_managed_dependency_overrides: common_dependency,env,components
+# melos_managed_dependency_overrides: common_dependency,components,env
 dependency_overrides:
   common_dependency:
     path: ../common_dependency
