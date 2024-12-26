@@ -35,7 +35,17 @@ class TaskListView extends StatelessWidget {
                             color: Colors.purple,
                           ),
                         ),
-                        subtitle: Text(todo.description),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(todo.description).margin(bottom: 4),
+                            Text(
+                              'Due Date: ${todo.dueDate}',
+                              style: TaskTypography.xs
+                                  .copyWith(color: AppColors.neutral40),
+                            ),
+                          ],
+                        ),
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -63,10 +73,12 @@ class TaskListView extends StatelessWidget {
                     );
                   },
                 )
-              : const Center(
+              : Center(
                   child: Text(
                     "No tasks found",
-                    style: TextStyle(color: Colors.grey, fontSize: 16),
+                    style: TaskTypography.sm.copyWith(
+                      color: AppColors.neutral40
+                    ),
                   ),
                 ),
         );

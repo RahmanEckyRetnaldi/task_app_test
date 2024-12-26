@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:task/src/presentation/page/cubit/task_cubit.dart';
 import 'package:task/src/presentation/page/widget/input_search_field.dart';
+import 'package:task/src/presentation/page/widget/submission_task_dialog.dart';
 import 'package:task/src/presentation/page/widget/task_list_view.dart';
+
+import '../../domain/entitiy/entitiy.dart';
 
 class TaskPage extends StatelessWidget {
   const TaskPage({super.key});
@@ -46,7 +49,7 @@ class _TaskUIState extends State<TaskUI> {
   Widget build(BuildContext context) {
     return BasePage<TaskCubit, TaskState>(
       customLoading: const BaseLoadingAnimation(
-        color: AppColors.background,
+        color: AppColors.neutral50,
       ),
       child: BlocBuilder<TaskCubit, TaskState>(
         builder: (context, state) {
@@ -85,7 +88,9 @@ class _TaskUIState extends State<TaskUI> {
               ),
             ),
             floatingActionButton: FloatingActionButton(
-              onPressed: () {},
+              onPressed: () {
+                showAddTaskDialog(context, false, state.taskSelected, (p0) {});
+              },
               backgroundColor: Colors.purple[300],
               child: const Icon(Icons.add),
             ),
@@ -93,5 +98,24 @@ class _TaskUIState extends State<TaskUI> {
         },
       ),
     );
+  }
+}
+
+void showAddTaskDialog(
+  BuildContext context,
+  bool isEdit,
+  TaskItemEntity? data,
+  Function(TaskItemEntity) onResult,
+) async {
+  final result = await showDialog(
+    context: context,
+    builder: (BuildContext context) => SubmissionTaskDialog(
+      isEdit: isEdit,
+      initialData: data,
+    ),
+  );
+
+  if (result != null) {
+    onResult(result);
   }
 }

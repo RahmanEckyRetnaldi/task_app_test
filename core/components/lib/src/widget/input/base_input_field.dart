@@ -1,5 +1,6 @@
 import 'package:common_dependency/common_dependency.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class BaseInputField extends StatefulWidget {
   const BaseInputField({
@@ -13,6 +14,12 @@ class BaseInputField extends StatefulWidget {
     this.isPasswordField = false,
     this.prefixIcon,
     this.suffixIcon,
+    this.readOnly = false,
+    this.onTap,
+    this.maxLines,
+    this.minLines,
+    this.inputFormatter,
+    this.maxLength
   }) : super(key: key);
 
   final TextEditingController controller;
@@ -20,10 +27,16 @@ class BaseInputField extends StatefulWidget {
   final String label;
   final String hintText;
   final String alert;
+  final bool readOnly;
   final Function(String value)? onChanged;
   final bool isPasswordField;
+  final Function()? onTap;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
+  final int? maxLines;
+  final int? minLines;
+  final List<TextInputFormatter>? inputFormatter;
+  final int? maxLength;
 
   @override
   State<BaseInputField> createState() => _BaseInputFieldState();
@@ -49,6 +62,10 @@ class _BaseInputFieldState extends State<BaseInputField> {
           controller: widget.controller,
           onChanged: widget.onChanged,
           focusNode: widget.focusNode,
+          readOnly: widget.readOnly,
+          onTap: widget.onTap,
+          maxLines:widget.isPasswordField && _isObscured ? 1 : widget.maxLines,
+          minLines: widget.minLines,
           obscureText: widget.isPasswordField && _isObscured,
           style: theme.textTheme.bodyLarge?.merge(TextStyle(
             fontWeight: FontWeight.bold,
@@ -120,6 +137,8 @@ class _BaseInputFieldState extends State<BaseInputField> {
           keyboardType: widget.isPasswordField
               ? TextInputType.visiblePassword
               : TextInputType.text,
+          inputFormatters: widget.inputFormatter,
+          maxLength: widget.maxLength,
         ),
       ],
     );

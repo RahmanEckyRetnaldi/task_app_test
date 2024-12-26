@@ -53,7 +53,7 @@ class _LoginUIState extends State<LoginUI> {
   Widget build(BuildContext context) {
     return BasePage<LoginCubit, LoginState>(
       customLoading: const BaseLoadingAnimation(
-        color: AppColors.background,
+        color: AppColors.neutral50,
       ),
       child: BlocBuilder<LoginCubit, LoginState>(
         buildWhen: (prev, current) => prev.status != current.status,
