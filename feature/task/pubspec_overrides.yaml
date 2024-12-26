@@ -1,0 +1,14 @@
+# melos_managed_dependency_overrides: auth,common_dependency,components,env,nav_list,network
+dependency_overrides:
+  auth:
+    path: ../auth
+  common_dependency:
+    path: ../../core/common_dependency
+  components:
+    path: ../../core/components
+  env:
+    path: ../../env
+  nav_list:
+    path: ../../core/nav_list
+  network:
+    path: ../../core/network
