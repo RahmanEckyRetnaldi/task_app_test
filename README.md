@@ -41,6 +41,14 @@ For more complete guide or extra features, see this link: https://fvm.app/docs/g
 - Every time you open the project, make sure you change “Flutter SDK” path to <RootProject>/.fvm/flutter_sdk
 - see link above to exclude .fvm/flutter_sdk from being scanned by IDE
 
+#### Credential Login
+```
+{
+"email": "eve.holt@reqres.in",
+"password": "cityslicka"
+}
+```
+
 ## Project Structure
 
 ```plaintext
@@ -111,7 +119,7 @@ This project in feature module follows **Clean Architecture** principles by divi
 ### 2. **Domain Layer** (`src/domain`)
 - Contains the core business logic of the application.
 - **Key Subfolders:**
-    - `entities`: Abstract data models for business logic.
+    - `entitiy`: Abstract data models for business logic.
     - `usecases`: Application-specific business rules.
     - `repositories`: Abstractions for data access (implemented in the data layer).
 

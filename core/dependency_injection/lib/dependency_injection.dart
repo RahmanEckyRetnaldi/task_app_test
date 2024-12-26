@@ -4,8 +4,8 @@ import 'package:auth/auth.dart';
 import 'package:common_dependency/common_dependency.dart';
 import 'package:flutter/foundation.dart';
 import 'package:navigation/navigation.dart';
-import 'package:network/network.dart';
 import 'package:splash/splash.dart';
+import 'package:task/task.dart';
 
 
 export 'package:dependency_injection/dependency_injection.dart';
@@ -13,12 +13,12 @@ export 'package:dependency_injection/dependency_injection.dart';
 class DependencyInjector {
   //util
   final NetworkModule _networkModule = NetworkModule();
-  // final CachingModule _cachingModule = CachingModule();
   final NavigationModule _navigationModule = NavigationModule();
 
   //package
   final AuthModule _internalAuthModule = AuthModule();
   final SplashModule _splashModule = SplashModule();
+  final TaskModule _taskModule = TaskModule();
 
   Future<void> injectApp({
     required String baseUrl,
@@ -34,11 +34,6 @@ class DependencyInjector {
     await _splashModule();
     await _navigationModule(di);
     await _internalAuthModule();
-
-    /// event broadcaster
-    /*di.registerLazySingleton<EventBroadcaster>(
-          () => EventBroadcaster(),
-    );
-    await _homeModule();*/
+    await _taskModule();
   }
 }
