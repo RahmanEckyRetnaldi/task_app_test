@@ -17,6 +17,7 @@ Please use these command in command line to get started:
 7. `melos env` -> generate .env dart code based on .env files
 
 
+
 ### IDE Setup
 For more complete guide or extra features, see this link: https://fvm.app/docs/getting_started/configuration/#ide 
 
@@ -41,6 +42,85 @@ For more complete guide or extra features, see this link: https://fvm.app/docs/g
 - Every time you open the project, make sure you change “Flutter SDK” path to <RootProject>/.fvm/flutter_sdk
 - see link above to exclude .fvm/flutter_sdk from being scanned by IDE
 
+## Project Structure
+
+```plaintext
+root_project/
+├── app/
+│   └── task_app/                # Main application module (entry point)
+├── core/                        # Core modules providing shared services and utilities
+│   ├── common_dependency/       # Common utilities and dependencies
+│   ├── components/              # Reusable UI components
+│   ├── dependency_injection/    # Dependency injection configurations
+│   ├── nav_list/                # Navigation lists or route definitions
+│   ├── navigation/              # Core navigation logic
+│   └── network/                 # Network communication logic
+│   env/                         # Environment configurations
+├── feature/                     # Feature-specific modules
+│   ├── auth/                    # Authentication-related features
+│   ├── splash/                  # Splash screen logic
+│   └── task/                    # Task management features
+└── melos.yaml                   # Melos configuration file
+```
+---
+
+## Modules
+
+### **1. App Module** (`app/task_app`)
+- **Purpose**: Acts as the main application entry point.
+- **Responsibilities**:
+    - Combines all core and feature modules.
+    - Provides the `main.dart` file to bootstrap the application.
+
+---
+
+### **2. Core Modules** (`core`)
+Shared modules providing essential services, utilities, and logic used by feature modules.
+
+#### Subfolders:
+- **`common_dependency`**: Common utilities and shared logic (e.g., constants, helper methods).
+- **`components`**: Reusable UI components (e.g., buttons, input fields).
+- **`dependency_injection`**: Dependency injection configurations (e.g., `GetIt` or `Provider`).
+- **`nav_list`**: Navigation route definitions.
+- **`navigation`**: Core navigation logic.
+- **`network`**: Network-related logic (e.g., API clients, interceptors).
+- **`env`**: Environment-specific configurations.
+
+---
+
+### **3. Feature Modules** (`feature`)
+Feature-specific modules that implement specific functionalities.
+
+#### Subfolders:
+- **`auth`**: Manages user authentication (e.g., login, registration).
+- **`splash`**: Implements splash screen and initial app setup.
+- **`task`**: Handles task management (e.g., task lists, details).
+
+---
+
+## Clean Architecture Overview
+This project in feature module follows **Clean Architecture** principles by dividing responsibilities into three main layers:
+
+### 1. **Data Layer** (`src/data`)
+- Manages data sources (API, local database) and implements repository logic.
+- **Key Subfolders:**
+    - `datasources`: Handles raw data from APIs or databases.
+    - `models`: Represents raw data structures.
+    - `repositories`: Implements repository interfaces defined in the domain layer.
+    - `mappers`: Converts raw data (models) to domain entities.
+
+### 2. **Domain Layer** (`src/domain`)
+- Contains the core business logic of the application.
+- **Key Subfolders:**
+    - `entities`: Abstract data models for business logic.
+    - `usecases`: Application-specific business rules.
+    - `repositories`: Abstractions for data access (implemented in the data layer).
+
+### 3. **Presentation Layer** (`src/presentation`)
+- Handles UI and state management.
+- **Key Subfolders:**
+    - `pages`: Screens and widgets for the application,State management (e.g., Bloc, Provider)..
+---
 
 ## FAQ
 - Q: can't run, why?\
