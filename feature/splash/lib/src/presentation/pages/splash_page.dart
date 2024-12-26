@@ -58,7 +58,7 @@ class SplashUI extends StatelessWidget {
             buildWhen: (prev, current) => prev.getSplashStatus != current.getSplashStatus,
             builder: (context, state){
               return Scaffold(
-                backgroundColor: Theme.of(context).colorScheme.primary,
+                backgroundColor: Theme.of(context).colorScheme.background,
                 appBar: AppBar(
                   systemOverlayStyle: SystemUiOverlayStyle.light,
                   backgroundColor: Colors.transparent,

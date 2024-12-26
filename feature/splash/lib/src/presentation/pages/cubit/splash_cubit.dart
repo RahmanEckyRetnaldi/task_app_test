@@ -30,7 +30,7 @@ class SplashCubit extends Cubit<SplashState>
   }
 
   Future<bool> get haveToken async {
-    return true;
+    return false;
   }
 
   Future<void> redirectPage({bool longDelay = true}) async {

@@ -13,10 +13,9 @@ Please use these command in command line to get started:
 5. `melos build_runner` and then select * or press enter -> to
    run `fvm flutter pub run build_runner` build for all available packages
 6. copy `.env.example` in root project to `.env` in root project, edit according to development
-   environment
+   environment. inside .env add :
+   `BASE_URL="https://reqres.in/api"`
 7. `melos env` -> generate .env dart code based on .env files
-
-
 
 ### IDE Setup
 For more complete guide or extra features, see this link: https://fvm.app/docs/getting_started/configuration/#ide 
@@ -128,5 +127,5 @@ This project in feature module follows **Clean Architecture** principles by divi
     - check `melos bootstrap`, is it success? should have `- xx package bootstrapped` at the end of script execution, if there is none, check script execution output, there should be some errors, see other FAQ for the resolution
     - check `fvm flutter --version`, it should contains same version as flutterSdkVersion inside `.fvm/fvm_config.json`. if not same, retry `fvm install`, if still same, remove fvm cache, use `fvm list` to get its cache directory
     - Compile error, check below for available FAQ
-- Q: Melos bootstrap error, `blablabla is not recognized as an internal or external command` , or `no such file or directory`, why?\
+- Q: Melos bootstrap error, `blablabla is not recognized as an internal or external command` , or `no such file or directory`, why?
   A: Melos doesn't support directory with space

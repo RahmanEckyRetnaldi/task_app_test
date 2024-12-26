@@ -98,7 +98,7 @@ class BaseDialog extends HookWidget {
                     Text(
                       body!,
                       textAlign: bodyAlign,
-                      style: bodyStyle ?? TaskTypography.bodyText1,
+                      style: bodyStyle ?? TaskTypography.md,
                     ),
                 ]..insertSeparator(
                     separator: const SizedBox(height: 12),

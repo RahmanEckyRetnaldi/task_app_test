@@ -1,4 +1,4 @@
 library splash;
 
 export 'src/presentation/pages/splash_page.dart';
-export 'src/presentation/splash_module.dart';
+export 'src/splash_module.dart';

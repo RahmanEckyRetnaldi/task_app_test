@@ -1,5 +1,6 @@
 library dependency_injection;
 
+import 'package:auth/auth.dart';
 import 'package:common_dependency/common_dependency.dart';
 import 'package:flutter/foundation.dart';
 import 'package:navigation/navigation.dart';
@@ -16,7 +17,7 @@ class DependencyInjector {
   final NavigationModule _navigationModule = NavigationModule();
 
   //package
-  // final AuthModule _internalAuthModule = AuthModule();
+  final AuthModule _internalAuthModule = AuthModule();
   final SplashModule _splashModule = SplashModule();
 
   Future<void> injectApp({
@@ -32,6 +33,7 @@ class DependencyInjector {
     // await _cachingModule(di, resetOnInstall: true);
     await _splashModule();
     await _navigationModule(di);
+    await _internalAuthModule();
 
     /// event broadcaster
     /*di.registerLazySingleton<EventBroadcaster>(
