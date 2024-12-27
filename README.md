@@ -129,6 +129,33 @@ This project in feature module follows **Clean Architecture** principles by divi
     - `pages`: Screens and widgets for the application,State management (e.g., Bloc, Provider)..
 ---
 
+### Libraries
+````plaintext
+- melos
+- freezed
+- freezed annotation
+- build_runner
+- Envided
+- envide_generator
+- loader_overlay
+- equatable
+- flutter_screenutil
+- formz
+- flutter_bloc
+- dartz
+- go_router
+- get_it
+- lifecycle
+- json_annotation
+- json_serializable
+- collection
+- logger
+- synchronized
+- dio
+- internet_connection_checker_plus
+- flutter_hooks
+````
+
 ## FAQ
 - Q: can't run, why?\
   A:
