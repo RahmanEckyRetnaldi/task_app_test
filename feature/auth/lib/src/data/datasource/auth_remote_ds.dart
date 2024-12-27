@@ -1,5 +1,5 @@
 import 'package:auth/src/data/datasource/endpoint/auth_endpoint.dart';
-import 'package:auth/src/data/model/login_response_model.dart';
+import 'package:auth/src/data/model/response/login_response_model.dart';
 import 'package:auth/src/data/model/request/login_request_model.dart';
 import 'package:common_dependency/common_dependency.dart';
 

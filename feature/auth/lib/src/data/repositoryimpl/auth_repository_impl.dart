@@ -1,13 +1,14 @@
 import 'package:auth/auth.dart';
-import 'package:auth/src/domain/entity/login_entity.dart';
 import 'package:common_dependency/common_dependency.dart';
 
+import '../datasource/auth_local_ds.dart';
 import '../datasource/auth_remote_ds.dart';
 import '../model/request/login_request_model.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource source;
-  AuthRepositoryImpl(this.source);
+  final AuthLocalDataSource localDataSource;
+  AuthRepositoryImpl(this.source, this.localDataSource);
 
   @override
   Future<Either<Failure, String>> login(LoginEntity body) async {
@@ -18,14 +19,24 @@ class AuthRepositoryImpl implements AuthRepository {
           return const Left(ErrorMessageFailure("Login failed"));
         }
         // set new token
-        // await localData.setTokens(
-        //   whichToken: WhichToken.user,
-        //   token: loginResponse,
-        // );
+        final user =  UserModel(token: result.accessToken.orEmpty());
+        await localDataSource.saveUser(user);
         return Right(result.accessToken ?? '');
       }catch(e){
         return const Left(ErrorMessageFailure("Login failed"));
       }
     });
+  }
+
+  @override
+  Future<bool> isLoggedIn()async {
+    final user = await localDataSource.getUser();
+    return user != null && user.token.isNotEmpty;
+
+  }
+
+  @override
+  Future<void> logout() async {
+    await localDataSource.deleteUser();
   }
 }

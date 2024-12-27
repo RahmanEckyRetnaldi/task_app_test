@@ -7,3 +7,4 @@ export 'src/extension/extension.dart';
 export 'src/asset_image/asset_icon.dart';
 export 'src/failure/failure.dart';
 export 'src/utils/utils.dart';
+export 'src/constants/hive_utils.dart';

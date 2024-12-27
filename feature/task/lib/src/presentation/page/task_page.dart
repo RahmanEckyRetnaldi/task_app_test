@@ -1,6 +1,7 @@
 import 'package:common_dependency/common_dependency.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:task/src/domain/repositories/home_navigation_repository.dart';
 import 'package:task/src/presentation/page/cubit/task_cubit.dart';
 import 'package:task/src/presentation/page/widget/input_search_field.dart';
 import 'package:task/src/presentation/page/widget/submission_task_dialog.dart';
@@ -60,10 +61,27 @@ class _TaskUIState extends State<TaskUI> {
               systemOverlayStyle: SystemUiOverlayStyle.light,
               backgroundColor: Colors.purple[300],
               elevation: 0,
-              title: Text(
-                'TASK APP',
-                style: TaskTypography.xl
-                    .merge(const TextStyle(fontWeight: FontWeight.bold)),
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'TASK APP',
+                    style: TaskTypography.xl
+                        .merge(const TextStyle(fontWeight: FontWeight.bold)),
+                  ),
+                  TextButton(
+                      onPressed: () {
+                        context.read<TaskCubit>().logout(() {
+                          di<HomeNavigationRepository>().goToLogin(context);
+                        });
+                      },
+                      child: Text(
+                        'Logout',
+                        style: TaskTypography.md.merge(
+                            const TextStyle(fontWeight: FontWeight.bold)),
+                      ))
+                ],
               ),
             ),
             extendBodyBehindAppBar: true,

@@ -1,0 +1,1 @@
+export 'local/user_model.dart';

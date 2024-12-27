@@ -1,3 +1,4 @@
+import 'package:auth/auth.dart';
 import 'package:common_dependency/common_dependency.dart';
 import 'package:task/src/domain/entitiy/entitiy.dart';
 
@@ -7,7 +8,9 @@ part 'task_state.dart';
 class TaskCubit extends Cubit<TaskState>
     with CustomSyncEmit
     implements BasePageListener<TaskState> {
-  TaskCubit() : super(const TaskState());
+  TaskCubit(this.logoutUseCase) : super(const TaskState());
+
+  final LogoutUseCase logoutUseCase;
 
   void init() {
     syncEmit(
@@ -35,6 +38,13 @@ class TaskCubit extends Cubit<TaskState>
         ],
       ),
     );
+  }
+
+  Future<void> logout(Function() onLogoutSuccess) async {
+    final result = await logoutUseCase();
+    if (result) {
+      onLogoutSuccess();
+    }
   }
 
   @override

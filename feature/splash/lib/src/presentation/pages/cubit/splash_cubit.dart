@@ -1,3 +1,4 @@
+import 'package:auth/auth.dart';
 import 'package:common_dependency/common_dependency.dart';
 import 'package:network/src/api/failure.dart';
 
@@ -9,7 +10,8 @@ part 'splash_state.dart';
 class SplashCubit extends Cubit<SplashState>
     with CustomSyncEmit
     implements BasePageListener<SplashState> {
-  SplashCubit() : super(const SplashState());
+  SplashCubit(this._checkLoginUseCase) : super(const SplashState());
+  final CheckLoginUseCase _checkLoginUseCase ;
 
   void init() {
     getSplash();
@@ -30,7 +32,7 @@ class SplashCubit extends Cubit<SplashState>
   }
 
   Future<bool> get haveToken async {
-    return false;
+    return await _checkLoginUseCase();
   }
 
   Future<void> redirectPage({bool longDelay = true}) async {

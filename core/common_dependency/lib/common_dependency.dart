@@ -22,6 +22,8 @@ export 'package:components/components.dart';
 export 'package:flutter_hooks/flutter_hooks.dart';
 export 'package:nav_list/nav_list.dart';
 export 'package:network/network.dart';
+export 'package:hive/hive.dart';
+export 'package:hive_flutter/hive_flutter.dart';
 
 
 export 'package:get_it/get_it.dart';

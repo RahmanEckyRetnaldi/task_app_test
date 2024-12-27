@@ -7,7 +7,7 @@ import 'package:navigation/navigation.dart';
 import 'package:splash/splash.dart';
 import 'package:task/task.dart';
 
-
+import 'src/hive/hive_config_module.dart';
 export 'package:dependency_injection/dependency_injection.dart';
 
 class DependencyInjector {
@@ -19,6 +19,7 @@ class DependencyInjector {
   final AuthModule _internalAuthModule = AuthModule();
   final SplashModule _splashModule = SplashModule();
   final TaskModule _taskModule = TaskModule();
+  final HiveConfigModule _hiveConfigModule = HiveConfigModule();
 
   Future<void> injectApp({
     required String baseUrl,
@@ -35,5 +36,6 @@ class DependencyInjector {
     await _navigationModule(di);
     await _internalAuthModule();
     await _taskModule();
+    await _hiveConfigModule();
   }
 }

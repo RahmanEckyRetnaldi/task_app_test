@@ -5,6 +5,6 @@ class TaskModule {
   Future<void> call() async {
 
     //cubit
-    di.registerFactory(() => TaskCubit());
+    di.registerFactory(() => TaskCubit(di()));
   }
 }
