@@ -9,6 +9,7 @@ import 'package:task/src/presentation/page/widget/submission_task_dialog.dart';
 import 'package:task/src/presentation/page/widget/task_list_view.dart';
 
 import '../../domain/entitiy/entitiy.dart';
+import '../../domain/sync_manager/TaskSyncManager.dart';
 
 class TaskPage extends StatelessWidget {
   const TaskPage({super.key});
@@ -44,6 +45,7 @@ class _TaskUIState extends State<TaskUI> {
     // Dispose controllers and focus nodes to avoid memory leaks
     searchController.dispose();
     _focusNodeSearch.dispose();
+    context.read<TaskSyncManager>().stopListener();
     super.dispose();
   }
 

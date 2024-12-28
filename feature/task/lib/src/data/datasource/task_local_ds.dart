@@ -15,6 +15,7 @@ abstract class TaskLocalDataSource {
   Future<bool> deleteTask(String id);
 
   Future<bool> markTaskAsSynced(String id);
+  Future<List<TaskItemModel>> getUnsyncedTasks();
 }
 
 class TaskLocalDataSourceImpl implements TaskLocalDataSource {
@@ -63,6 +64,11 @@ class TaskLocalDataSourceImpl implements TaskLocalDataSource {
     } else {
       return false;
     }
+  }
+
+  @override
+  Future<List<TaskItemModel>> getUnsyncedTasks() async {
+    return _taskBox.values.where((task) => !task.isSynced).toList();
   }
 
   @override

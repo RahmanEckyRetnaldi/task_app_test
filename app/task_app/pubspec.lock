@@ -877,7 +877,7 @@ packages:
     source: hosted
     version: "3.1.0+1"
   task:
-    dependency: "direct overridden"
+    dependency: "direct main"
     description:
       path: "../../feature/task"
       relative: true
