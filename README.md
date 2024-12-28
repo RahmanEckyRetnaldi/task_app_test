@@ -158,6 +158,8 @@ This project in feature module follows **Clean Architecture** principles by divi
 - hive
 - hive_flutter
 - hive_generator
+- test
+- mocktail
 ````
 
 ## FAQ
