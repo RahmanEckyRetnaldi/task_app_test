@@ -31,11 +31,10 @@ class DependencyInjector {
       baseUrl: baseUrl,
       rootNavigatorKey: rootNavigatorKey,
     );
-    // await _cachingModule(di, resetOnInstall: true);
-    await _splashModule();
-    await _navigationModule(di);
     await _internalAuthModule();
-    await _taskModule();
+    await _navigationModule(di);
     await _hiveConfigModule();
+    await _splashModule();
+    await _taskModule();
   }
 }

@@ -36,6 +36,7 @@ dependencies:
   dependency_injection: ^0.0.1
   flutter_launcher_icons: ^0.13.1
   auth: ^0.0.1
+  task: ^0.0.1
   navigation: ^0.0.1
   env: ^0.0.1
 

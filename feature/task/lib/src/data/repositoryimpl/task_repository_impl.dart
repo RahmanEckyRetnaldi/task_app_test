@@ -136,6 +136,17 @@ class TaskRepositoryImpl extends TaskRepository {
     } else {
       return Right(updateResult);
     }
-    ;
+  }
+
+  Future<void> syncUnsyncedTasks() async {
+    final unsyncedTasks = await localSource.getUnsyncedTasks();
+    for (var task in unsyncedTasks) {
+      try {
+        await remoteSource.saveTask(task.toModel());
+        await localSource.markTaskAsSynced(task.id);
+      } catch (e) {
+        print("Failed to sync task: ${task.id}, error: $e");
+      }
+    }
   }
 }

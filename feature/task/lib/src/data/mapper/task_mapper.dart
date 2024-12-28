@@ -56,4 +56,16 @@ extension TaskItemEntityMapper on TaskItemEntity {
       },
     );
   }
+
+}
+
+extension TaskItemModelMapper on TaskItemModel {
+  TaskDataModel toModel() {
+    return TaskDataModel(
+      id: this.id.isEmpty ? null : this.id.toIntOrDefault(),
+      title: title,
+      description: description,
+      dueDate: dueDate,
+    );
+  }
 }

@@ -1,5 +1,6 @@
 import 'package:common_dependency/common_dependency.dart';
 import 'package:task/src/data/repositoryimpl/task_repository_impl.dart';
+import 'package:task/src/domain/domain.dart';
 import 'package:task/src/domain/repositories/repositories.dart';
 import 'package:task/src/domain/usecase/delete_task_usecase.dart';
 import 'package:task/src/domain/usecase/get_list_task_usecase.dart';
@@ -8,6 +9,7 @@ import 'package:task/src/domain/usecase/update_task_usecase.dart';
 import 'package:task/src/presentation/page/cubit/task_cubit.dart';
 
 import 'data/data.dart';
+import 'domain/sync_manager/TaskSyncManager.dart';
 
 class TaskModule {
   Future<void> call() async {
@@ -28,8 +30,16 @@ class TaskModule {
     di.registerLazySingleton(() => SaveTaskUseCase(di()));
     di.registerLazySingleton(() => UpdateTaskUseCase(di()));
     di.registerLazySingleton(() => DeleteUseCase(di()));
+    di.registerLazySingleton(() => SyncTaskUseCase(di()));
 
     //cubit
     di.registerFactory(() => TaskCubit(di(), di(), di(), di(), di()));
+
+    di.registerFactory(() => TaskSyncManager(
+      di(),
+      di(),
+    ));
+
+    di<TaskSyncManager>().startListener();
   }
 }

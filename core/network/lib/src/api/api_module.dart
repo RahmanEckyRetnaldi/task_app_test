@@ -12,10 +12,8 @@ class ApiModule {
         DioService Function(GetIt di) dioService = _defaultDioService,
         List<InternetCheckOption>? connectStatusServers,
         Duration connectCheckerInterval = const Duration(seconds: 5),
-        bool enableSyncIsConnected = false,
+        bool enableSyncIsConnected = true,
       }) async {
-    di.registerLazySingleton<NetworkInfo>(() =>
-    NetworkInfoImpl(di())..enableIsConnectedSync(enableSyncIsConnected));
     di.registerLazySingleton(
           () => dioService(di),
     );
@@ -34,6 +32,8 @@ class ApiModule {
               ],
           useDefaultOptions: false),
     );
+    di.registerLazySingleton<NetworkInfo>(() =>
+    NetworkInfoImpl(di())..enableIsConnectedSync(enableSyncIsConnected));
     di.registerLazySingleton(() => dio(di));
   }
 
