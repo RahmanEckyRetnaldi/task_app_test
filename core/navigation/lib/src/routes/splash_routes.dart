@@ -1,6 +1,6 @@
 
 import 'package:nav_list/nav_list.dart';
-import 'package:splash/splash_page.dart';
+import 'package:splash/splash.dart';
 
 import '../utils/utils_routes.dart';
 

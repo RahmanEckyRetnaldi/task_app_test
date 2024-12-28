@@ -1,9 +1,4 @@
-
 import 'package:common_dependency/common_dependency.dart';
-import 'package:network/src/api/json_error_dio_transformer.dart';
-import 'package:network/src/api/type_def.dart';
-
-import 'custom_exception.dart';
 
 class DioService {
   /// An instance of [Dio] for executing network requests.
@@ -220,7 +215,8 @@ class DioService {
     }
     try {
       // Returning the serialized object
-      return converter(response.data!);
+      final data = response.data == null ? {"data": ""} : response.data!;
+      return converter(data);
     } catch (ex) {
       throw DioServiceError.fromParsingException(ex);
     }

@@ -1,4 +1,4 @@
-# melos_managed_dependency_overrides: auth,common_dependency,dependency_injection,env,navigation,network,splash,task,nav_list,components
+# melos_managed_dependency_overrides: auth,common_dependency,components,dependency_injection,env,nav_list,navigation,network,splash,task
 dependency_overrides:
   auth:
     path: ../../feature/auth

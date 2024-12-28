@@ -29,24 +29,23 @@ class MyApp extends StatelessWidget {
         return GlobalLoaderOverlay(
           overlayOpacity: 0.2,
           child: MaterialApp.router(
-            restorationScopeId: 'app',
-            routerConfig: _mainNavigation.router,
-            scrollBehavior: const MaterialScrollBehavior().copyWith(
-              dragDevices: {
-                PointerDeviceKind.mouse,
-                PointerDeviceKind.touch,
-                PointerDeviceKind.stylus,
-                PointerDeviceKind.unknown,
-              },
-            ),
-            title: 'Task App',
-            themeMode: ThemeMode.light,
-            theme: TaskTheme.lightTheme,
+              restorationScopeId: 'app',
+              routerConfig: _mainNavigation.router,
+              scrollBehavior: const MaterialScrollBehavior().copyWith(
+                dragDevices: {
+                  PointerDeviceKind.mouse,
+                  PointerDeviceKind.touch,
+                  PointerDeviceKind.stylus,
+                  PointerDeviceKind.unknown,
+                },
+              ),
+              title: 'Task App',
+              themeMode: ThemeMode.light,
+              theme: TaskTheme.lightTheme,
               builder: (context, child) => MediaQuery(
-                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                child: child ?? const SizedBox(),
-              )
-          ),
+                    data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                    child: child ?? const SizedBox(),
+                  )),
         );
       },
     );
