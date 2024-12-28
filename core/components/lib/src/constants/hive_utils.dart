@@ -1,6 +1,7 @@
 class HiveAdapterKey{
   static const int USER_ADAPTER_KEY = 0;
   static const int TASK_ADAPTER_KEY = 1;
+  static const int TASK_STATUS_ADAPTER_KEY = 2;
 }
 
 class HiveBoxName{

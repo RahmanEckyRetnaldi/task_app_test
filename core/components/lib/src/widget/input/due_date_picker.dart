@@ -41,9 +41,9 @@ class DueDatePicker extends StatelessWidget {
             ),
           );
         }
-        controller.text = DateFormat('dd MMMM yyyy').format(now);
+        controller.text = DateFormat('dd MMM yyyy').format(now);
       } else {
-        controller.text = DateFormat('dd MMMM yyyy').format(pickedDate);
+        controller.text = DateFormat('dd MMM yyyy').format(pickedDate);
       }
     }
   }

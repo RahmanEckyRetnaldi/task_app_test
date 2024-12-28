@@ -91,7 +91,8 @@ Shared modules providing essential services, utilities, and logic used by featur
 - **`nav_list`**: Navigation route definitions.
 - **`navigation`**: Core navigation logic.
 - **`network`**: Network-related logic (e.g., API clients, interceptors).
-- **`env`**: Environment-specific configurations.
+
+#### **`env`**: Environment-specific configurations.
 
 ---
 
@@ -130,7 +131,7 @@ This project in feature module follows **Clean Architecture** principles by divi
 ---
 
 ### Libraries
-````plaintext
+````
 - melos
 - freezed
 - freezed annotation
@@ -154,6 +155,9 @@ This project in feature module follows **Clean Architecture** principles by divi
 - dio
 - internet_connection_checker_plus
 - flutter_hooks
+- hive
+- hive_flutter
+- hive_generator
 ````
 
 ## FAQ

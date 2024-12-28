@@ -22,4 +22,8 @@ extension StringOrEmpty on String? {
   bool? equals(String? other) {
     return isNullOrEmpty ? null : this == other;
   }
+
+  int toIntOrDefault({int defaultValue = 0}) {
+    return isNullOrEmpty ? defaultValue : int.parse(this!);
+  }
 }

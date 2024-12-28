@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:task/src/domain/repositories/home_navigation_repository.dart';
 import 'package:task/src/presentation/page/cubit/task_cubit.dart';
+import 'package:task/src/presentation/page/widget/filter_task.dart';
 import 'package:task/src/presentation/page/widget/input_search_field.dart';
 import 'package:task/src/presentation/page/widget/submission_task_dialog.dart';
 import 'package:task/src/presentation/page/widget/task_list_view.dart';
@@ -93,11 +94,20 @@ class _TaskUIState extends State<TaskUI> {
                     //welcome
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16),
-                      child: InputSearchField(
-                        controller: searchController,
-                        focusNode: _focusNodeSearch,
-                        onChanged: (value) {},
-                        onSearchClicked: () {},
+                      child: Column(
+                        children: [
+                          InputSearchField(
+                            controller: searchController,
+                            focusNode: _focusNodeSearch,
+                            onChanged: (value) {
+                              context.read<TaskCubit>().onSearchChanged(value);
+                            },
+                            onSearchClicked: () {},
+                          ).margin(
+                            bottom: 8
+                          ),
+                          const FilterTask()
+                        ],
                       ),
                     ),
                     const TaskListView(),
@@ -107,7 +117,14 @@ class _TaskUIState extends State<TaskUI> {
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: () {
-                showAddTaskDialog(context, false, state.taskSelected, (p0) {});
+                showAddTaskDialog(
+                  context,
+                  false,
+                  const TaskItemEntity(),
+                  (p0) {
+                    context.read<TaskCubit>().addNewTask(p0);
+                  },
+                );
               },
               backgroundColor: Colors.purple[300],
               child: const Icon(Icons.add),

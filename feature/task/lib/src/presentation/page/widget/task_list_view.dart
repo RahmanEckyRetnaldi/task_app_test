@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:task/src/domain/entitiy/entitiy.dart';
 import 'package:task/src/presentation/page/cubit/task_cubit.dart';
 
+import '../../../../task.dart';
+
 class TaskListView extends StatelessWidget {
   const TaskListView({
     super.key,
@@ -13,11 +15,11 @@ class TaskListView extends StatelessWidget {
     return BlocBuilder<TaskCubit, TaskState>(
       builder: (context, state) {
         return Expanded(
-          child: state.listTask.isNotEmpty
+          child: state.listFiltered.isNotEmpty
               ? ListView.builder(
-                  itemCount: state.listTask.length,
+                  itemCount: state.listFiltered.length,
                   itemBuilder: (context, index) {
-                    final todo = state.listTask[index];
+                    final todo = state.listFiltered[index];
                     return Card(
                       margin: const EdgeInsets.only(bottom: 16.0),
                       shape: RoundedRectangleBorder(
@@ -50,12 +52,18 @@ class TaskListView extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                showAddTaskDialog(context, true, todo, (p0) {
+                                  context.read<TaskCubit>().updateTask(p0);
+                                });
+                              },
                               icon:
                                   const Icon(Icons.edit, color: Colors.purple),
                             ),
                             IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                context.read<TaskCubit>().deleteTask(todo.id);
+                              },
                               icon: const Icon(Icons.delete, color: Colors.red),
                             ),
                             IconButton(
@@ -76,9 +84,8 @@ class TaskListView extends StatelessWidget {
               : Center(
                   child: Text(
                     "No tasks found",
-                    style: TaskTypography.sm.copyWith(
-                      color: AppColors.neutral40
-                    ),
+                    style:
+                        TaskTypography.sm.copyWith(color: AppColors.neutral40),
                   ),
                 ),
         );

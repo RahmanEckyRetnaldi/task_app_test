@@ -44,6 +44,8 @@ class _SubmissionTaskDialogState extends State<SubmissionTaskDialog> {
       titleError = null;
       dueDateError = null;
 
+      final id = widget.initialData?.id.orEmpty();
+
       // Validasi Title
       if (titleController.text.isEmpty) {
         titleError = 'Title is required';
@@ -56,10 +58,14 @@ class _SubmissionTaskDialogState extends State<SubmissionTaskDialog> {
 
       // Jika Tidak Ada Error, Kirim Data
       if (titleError == null && dueDateError == null) {
-        context.pop({
-          'title': titleController.text,
-          'dueDate': dueDateController.text,
-        });
+        context.pop(TaskItemEntity(
+          id: id.orEmpty(),
+          title: titleController.text,
+          description: descriptionController.text,
+          dueDate: dueDateController.text,
+          status: selectedStatus,
+        )
+        );
       }
     });
   }
@@ -93,7 +99,7 @@ class _SubmissionTaskDialogState extends State<SubmissionTaskDialog> {
                 label: 'Title',
                 hintText: "Enter title",
                 isPasswordField: false,
-                alert: titleError ??'',
+                alert: titleError ?? '',
                 inputFormatter: [LengthLimitingTextInputFormatter(50)],
                 maxLength: 50,
               ).margin(bottom: 16),

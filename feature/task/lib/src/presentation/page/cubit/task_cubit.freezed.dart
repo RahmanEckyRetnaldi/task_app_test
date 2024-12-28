@@ -18,8 +18,10 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$TaskState {
   FormzStatus get status => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
+  String get query => throw _privateConstructorUsedError;
   List<TaskItemEntity> get listTask => throw _privateConstructorUsedError;
-  TaskItemEntity get taskSelected => throw _privateConstructorUsedError;
+  List<TaskItemEntity> get listFiltered => throw _privateConstructorUsedError;
+  Map<String, bool> get filters => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TaskStateCopyWith<TaskState> get copyWith =>
@@ -34,10 +36,10 @@ abstract class $TaskStateCopyWith<$Res> {
   $Res call(
       {FormzStatus status,
       Failure? failure,
+      String query,
       List<TaskItemEntity> listTask,
-      TaskItemEntity taskSelected});
-
-  $TaskItemEntityCopyWith<$Res> get taskSelected;
+      List<TaskItemEntity> listFiltered,
+      Map<String, bool> filters});
 }
 
 /// @nodoc
@@ -55,8 +57,10 @@ class _$TaskStateCopyWithImpl<$Res, $Val extends TaskState>
   $Res call({
     Object? status = null,
     Object? failure = freezed,
+    Object? query = null,
     Object? listTask = null,
-    Object? taskSelected = null,
+    Object? listFiltered = null,
+    Object? filters = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -67,23 +71,23 @@ class _$TaskStateCopyWithImpl<$Res, $Val extends TaskState>
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure?,
+      query: null == query
+          ? _value.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String,
       listTask: null == listTask
           ? _value.listTask
           : listTask // ignore: cast_nullable_to_non_nullable
               as List<TaskItemEntity>,
-      taskSelected: null == taskSelected
-          ? _value.taskSelected
-          : taskSelected // ignore: cast_nullable_to_non_nullable
-              as TaskItemEntity,
+      listFiltered: null == listFiltered
+          ? _value.listFiltered
+          : listFiltered // ignore: cast_nullable_to_non_nullable
+              as List<TaskItemEntity>,
+      filters: null == filters
+          ? _value.filters
+          : filters // ignore: cast_nullable_to_non_nullable
+              as Map<String, bool>,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $TaskItemEntityCopyWith<$Res> get taskSelected {
-    return $TaskItemEntityCopyWith<$Res>(_value.taskSelected, (value) {
-      return _then(_value.copyWith(taskSelected: value) as $Val);
-    });
   }
 }
 
@@ -98,11 +102,10 @@ abstract class _$$TaskStateImplCopyWith<$Res>
   $Res call(
       {FormzStatus status,
       Failure? failure,
+      String query,
       List<TaskItemEntity> listTask,
-      TaskItemEntity taskSelected});
-
-  @override
-  $TaskItemEntityCopyWith<$Res> get taskSelected;
+      List<TaskItemEntity> listFiltered,
+      Map<String, bool> filters});
 }
 
 /// @nodoc
@@ -118,8 +121,10 @@ class __$$TaskStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? failure = freezed,
+    Object? query = null,
     Object? listTask = null,
-    Object? taskSelected = null,
+    Object? listFiltered = null,
+    Object? filters = null,
   }) {
     return _then(_$TaskStateImpl(
       status: null == status
@@ -130,14 +135,22 @@ class __$$TaskStateImplCopyWithImpl<$Res>
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure?,
+      query: null == query
+          ? _value.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String,
       listTask: null == listTask
           ? _value._listTask
           : listTask // ignore: cast_nullable_to_non_nullable
               as List<TaskItemEntity>,
-      taskSelected: null == taskSelected
-          ? _value.taskSelected
-          : taskSelected // ignore: cast_nullable_to_non_nullable
-              as TaskItemEntity,
+      listFiltered: null == listFiltered
+          ? _value._listFiltered
+          : listFiltered // ignore: cast_nullable_to_non_nullable
+              as List<TaskItemEntity>,
+      filters: null == filters
+          ? _value._filters
+          : filters // ignore: cast_nullable_to_non_nullable
+              as Map<String, bool>,
     ));
   }
 }
@@ -148,9 +161,13 @@ class _$TaskStateImpl extends _TaskState {
   const _$TaskStateImpl(
       {this.status = FormzStatus.pure,
       this.failure,
+      this.query = '',
       final List<TaskItemEntity> listTask = const [],
-      this.taskSelected = const TaskItemEntity()})
+      final List<TaskItemEntity> listFiltered = const [],
+      final Map<String, bool> filters = const {}})
       : _listTask = listTask,
+        _listFiltered = listFiltered,
+        _filters = filters,
         super._();
 
   @override
@@ -158,6 +175,9 @@ class _$TaskStateImpl extends _TaskState {
   final FormzStatus status;
   @override
   final Failure? failure;
+  @override
+  @JsonKey()
+  final String query;
   final List<TaskItemEntity> _listTask;
   @override
   @JsonKey()
@@ -167,13 +187,27 @@ class _$TaskStateImpl extends _TaskState {
     return EqualUnmodifiableListView(_listTask);
   }
 
+  final List<TaskItemEntity> _listFiltered;
   @override
   @JsonKey()
-  final TaskItemEntity taskSelected;
+  List<TaskItemEntity> get listFiltered {
+    if (_listFiltered is EqualUnmodifiableListView) return _listFiltered;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_listFiltered);
+  }
+
+  final Map<String, bool> _filters;
+  @override
+  @JsonKey()
+  Map<String, bool> get filters {
+    if (_filters is EqualUnmodifiableMapView) return _filters;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_filters);
+  }
 
   @override
   String toString() {
-    return 'TaskState(status: $status, failure: $failure, listTask: $listTask, taskSelected: $taskSelected)';
+    return 'TaskState(status: $status, failure: $failure, query: $query, listTask: $listTask, listFiltered: $listFiltered, filters: $filters)';
   }
 
   @JsonKey(ignore: true)
@@ -187,8 +221,10 @@ abstract class _TaskState extends TaskState {
   const factory _TaskState(
       {final FormzStatus status,
       final Failure? failure,
+      final String query,
       final List<TaskItemEntity> listTask,
-      final TaskItemEntity taskSelected}) = _$TaskStateImpl;
+      final List<TaskItemEntity> listFiltered,
+      final Map<String, bool> filters}) = _$TaskStateImpl;
   const _TaskState._() : super._();
 
   @override
@@ -196,9 +232,13 @@ abstract class _TaskState extends TaskState {
   @override
   Failure? get failure;
   @override
+  String get query;
+  @override
   List<TaskItemEntity> get listTask;
   @override
-  TaskItemEntity get taskSelected;
+  List<TaskItemEntity> get listFiltered;
+  @override
+  Map<String, bool> get filters;
   @override
   @JsonKey(ignore: true)
   _$$TaskStateImplCopyWith<_$TaskStateImpl> get copyWith =>

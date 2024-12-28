@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TaskItemEntity {
+  String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get dueDate => throw _privateConstructorUsedError;
@@ -33,7 +34,11 @@ abstract class $TaskItemEntityCopyWith<$Res> {
       _$TaskItemEntityCopyWithImpl<$Res, TaskItemEntity>;
   @useResult
   $Res call(
-      {String title, String description, String dueDate, TaskStatus status});
+      {String id,
+      String title,
+      String description,
+      String dueDate,
+      TaskStatus status});
 }
 
 /// @nodoc
@@ -49,12 +54,17 @@ class _$TaskItemEntityCopyWithImpl<$Res, $Val extends TaskItemEntity>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? description = null,
     Object? dueDate = null,
     Object? status = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -84,7 +94,11 @@ abstract class _$$TaskItemEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String title, String description, String dueDate, TaskStatus status});
+      {String id,
+      String title,
+      String description,
+      String dueDate,
+      TaskStatus status});
 }
 
 /// @nodoc
@@ -98,12 +112,17 @@ class __$$TaskItemEntityImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? description = null,
     Object? dueDate = null,
     Object? status = null,
   }) {
     return _then(_$TaskItemEntityImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -128,11 +147,15 @@ class __$$TaskItemEntityImplCopyWithImpl<$Res>
 
 class _$TaskItemEntityImpl implements _TaskItemEntity {
   const _$TaskItemEntityImpl(
-      {this.title = '',
+      {this.id = '',
+      this.title = '',
       this.description = '',
       this.dueDate = '',
       this.status = TaskStatus.Pending});
 
+  @override
+  @JsonKey()
+  final String id;
   @override
   @JsonKey()
   final String title;
@@ -148,7 +171,7 @@ class _$TaskItemEntityImpl implements _TaskItemEntity {
 
   @override
   String toString() {
-    return 'TaskItemEntity(title: $title, description: $description, dueDate: $dueDate, status: $status)';
+    return 'TaskItemEntity(id: $id, title: $title, description: $description, dueDate: $dueDate, status: $status)';
   }
 
   @override
@@ -156,6 +179,7 @@ class _$TaskItemEntityImpl implements _TaskItemEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TaskItemEntityImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -165,7 +189,7 @@ class _$TaskItemEntityImpl implements _TaskItemEntity {
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, title, description, dueDate, status);
+      Object.hash(runtimeType, id, title, description, dueDate, status);
 
   @JsonKey(ignore: true)
   @override
@@ -177,11 +201,14 @@ class _$TaskItemEntityImpl implements _TaskItemEntity {
 
 abstract class _TaskItemEntity implements TaskItemEntity {
   const factory _TaskItemEntity(
-      {final String title,
+      {final String id,
+      final String title,
       final String description,
       final String dueDate,
       final TaskStatus status}) = _$TaskItemEntityImpl;
 
+  @override
+  String get id;
   @override
   String get title;
   @override
