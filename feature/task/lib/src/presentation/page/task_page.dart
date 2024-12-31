@@ -45,7 +45,7 @@ class _TaskUIState extends State<TaskUI> {
     // Dispose controllers and focus nodes to avoid memory leaks
     searchController.dispose();
     _focusNodeSearch.dispose();
-    context.read<TaskSyncManager>().stopListener();
+    di<TaskSyncManager>().stopListener();
     super.dispose();
   }
 

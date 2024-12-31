@@ -28,4 +28,8 @@ class TaskSyncManager {
   void stopListener(){
     _networkSubscription?.cancel();
   }
+
+  void dispose() {
+    stopListener();
+  }
 }
